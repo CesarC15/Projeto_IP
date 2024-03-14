@@ -1,6 +1,6 @@
-from herois import Personagem, Inimigo
-from banco_de_dados import stats_cavaleiro, stats_arqueiro, stats_mago, stats_assassino, ataques_iniciais_cavaleiro, ataques_existentes_cavaleiro, ataques_iniciais_mago, ataques_existentes_mago, ataques_iniciais_arqueiro, ataques_existentes_arqueiro, ataques_iniciais_assassino, ataques_existentes_assassino, ataques_inimigo_1
-from montar_inimigo import montar_dic_inim, ataques_inimigo, ataque_inimigo
+from herois import Personagem
+from Inimigo import Inimigos
+from banco_de_dados import *
 import random
 
 escolha = input()
@@ -16,7 +16,7 @@ elif escolha == 'arqueiro':
 elif escolha == 'assassino':
     jogador = Personagem(stats_assassino, ataques_iniciais_assassino, ataques_existentes_assassino)
 
-inimigo = Inimigo(montar_dic_inim(2, 4, 1, 1, 5, 8), ataques_inimigo(ataques_inimigo_1, ataque_inimigo)) #falta definir os stats e os ataques do inimigo
+inimigo = Inimigos(Inimigos.montar_dic_inim(2, 4, 1, 1, 5, 8), Inimigos.ataques_inimigo(ataques_inimigo_1, Inimigos.ataque_inimigo)) #falta definir os stats e os ataques do inimigo
 
 def combate(dic_jogador, dic_inimigo, dic_ataques_jogador, dic_ataques_inimigo, vez): #exige os dicionários contendo os stats do jogador e do inimigo, os dicionários contendo seus ataques e vez(quem atacará esse turno, o primeiro turno será de quem iniciar o combate)
     ataque_acertou = False
@@ -131,7 +131,3 @@ def combate(dic_jogador, dic_inimigo, dic_ataques_jogador, dic_ataques_inimigo, 
             dic_jogador = combate(dic_jogador, dic_inimigo, dic_ataques_jogador, dic_ataques_inimigo, "jogador")
 
     return dic_jogador
-
-print(jogador.stats)
-jogador.stats = combate(jogador.stats, inimigo.stats, jogador.ataques_obtidos, inimigo.ataques, vez)
-print(jogador.stats)
