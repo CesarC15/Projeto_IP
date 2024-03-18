@@ -25,7 +25,14 @@ BLACK = (0, 0, 0)
 
 RED = (255, 0, 0)
 
+pygame.font.init()
+fonte = pygame.font.Font('arial.ttf', 36)
 
+chaves_coletadas = 0
+x = 0
+texto_chaves = fonte.render("Chaves: {}".format(chaves_coletadas), True, BLACK)
+
+texto_chaves_rect = texto_chaves.get_rect(x = 1000, y = 1000)
 # Criar a classe do jogador
 
 class Player(pygame.sprite.Sprite):
@@ -34,7 +41,7 @@ class Player(pygame.sprite.Sprite):
 
         super().__init__()
 
-        self.image = pygame.image.load("D:\\Users\\taf3\\Desktop\\jogo\\arqueiro.png")
+        self.image = pygame.image.load("D:\\Users\\taf3\\Desktop\\jogo\\assassino.png")
 
         self.image = pygame.transform.scale(self.image, (60, 60))
 
@@ -43,8 +50,10 @@ class Player(pygame.sprite.Sprite):
         self.rect.topleft = (40, 40)
 
 
-    def update(self, dx, dy):
+    def update(self, dx, dy, chaves_coletadas):
 
+        global texto_chaves
+        
         # Atualizar a posição do jogador-
 
         self.rect.x += dx
@@ -74,6 +83,47 @@ class Player(pygame.sprite.Sprite):
 
                     self.rect.top = wall.rect.bottom
 
+        for chave in chaves_verde:
+            if self.rect.colliderect(chave.rect) and not chave.coletada:
+                chave.coletada = True
+                chaves_verde.remove(chave)
+                # Remover a chave do grupo de chaves quando o jogador passar por cima dela
+                all_sprites.remove(chave)
+
+                chaves_coletadas += 1
+
+        for chave in chaves_azul:
+            if self.rect.colliderect(chave.rect) and not chave.coletada:
+                chave.coletada = True
+                chaves_azul.remove(chave)
+                # Remover a chave do grupo de chaves quando o jogador passar por cima dela
+                all_sprites.remove(chave)
+
+                chaves_coletadas += 1
+
+
+        for chave in chaves_vermelha:
+            if self.rect.colliderect(chave.rect) and not chave.coletada:
+                chave.coletada = True
+                chaves_vermelha.remove(chave)
+                # Remover a chave do grupo de chaves quando o jogador passar por cima dela
+                all_sprites.remove(chave)
+
+                chaves_coletadas += 1
+
+
+        if chaves_coletadas == 1:
+            texto_chaves = fonte.render("Chaves: 1", True, BLACK)  # Update the text surface
+
+        if chaves_coletadas == 2:
+            texto_chaves = fonte.render("Chaves: 2", True, BLACK)  # Update the text surface
+                
+        if chaves_coletadas == 3:
+            texto_chaves = fonte.render("Chaves: 3", True, BLACK)  # Update the text surface
+                
+                
+
+
 
 # Criar a classe das paredes
 
@@ -91,6 +141,55 @@ class Wall(pygame.sprite.Sprite):
 
         self.rect.topleft = (x * 40, y * 40)
 
+class Chave_verde(pygame.sprite.Sprite):
+
+    def __init__(self, x, y):
+
+        super().__init__()
+
+        self.original_image = pygame.image.load("D:\\Users\\taf3\\Desktop\\jogo\\chave1.webp")
+
+        self.image = pygame.transform.scale(self.original_image, (40, 40))
+
+        self.rect = self.image.get_rect()
+
+        self.rect.topleft = (x * 40, y * 40)
+
+        self.coletada = False 
+
+
+class Chave_azul(pygame.sprite.Sprite):
+
+    def __init__(self, x, y):
+
+        super().__init__()
+
+        self.original_image = pygame.image.load("D:\\Users\\taf3\\Desktop\\jogo\\chave2.webp")
+
+        self.image = pygame.transform.scale(self.original_image, (40, 40))
+
+        self.rect = self.image.get_rect()
+
+        self.rect.topleft = (x * 40, y * 40)
+
+        self.coletada = False 
+
+class Chave_vermelha(pygame.sprite.Sprite):
+
+    def __init__(self, x, y):
+
+        super().__init__()
+
+        self.original_image = pygame.image.load("D:\\Users\\taf3\\Desktop\\jogo\\chave3.webp")
+
+        self.image = pygame.transform.scale(self.original_image, (40, 40))
+
+        self.rect = self.image.get_rect()
+
+        self.rect.topleft = (x * 40, y * 40)
+
+        self.coletada = False 
+
 
 # Criar o labirinto
 
@@ -101,7 +200,7 @@ def create_maze():
         "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
         "x                                               x",
         "x                                               x",
-        "x     xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx   xxxxxx",
+        "x     xxxxxxxxxxxxxxxxxxxxx     xxxxxxx   xxxxxx",
         "x     x                  x       x    x        x",
         "xxxxxxx                  x            x        x",
         "x                        x            x        x",
@@ -109,14 +208,14 @@ def create_maze():
         "x                        x       x    x        x",
         "x                        x       x    x        x",
         "x                        x       x    x        x",
-        "x                        x       x    x        x",
+        "x                        x   1   x    x        x",
         "x                        xxxxxxxxx    x        x",
         "x                                     x        x",
         "x                                              x",
         "x                                              x",
         "x                     x   xxxxxxxxx     xxxx   x",
         "x                     x   x       x        x   x",
-        "x                     x   x       x        x   x",
+        "x                     x   x       x     2  x   x",
         "x                     x   x       xxxxxxxxxx   x",
         "x                     x   x                    x",
         "x                     x   x                    x",
@@ -138,6 +237,19 @@ def create_maze():
 
                 walls.add(wall)
 
+            if col == '1':
+
+                chave_verde = Chave_verde(x, y)
+
+                chaves_verde.add(chave_verde)
+
+            if col == '2':
+
+                chave_azul = Chave_azul(x, y)
+
+                chaves_azul.add(chave_azul)
+
+
 
 # Inicializar a tela
 
@@ -151,20 +263,13 @@ pygame.display.set_caption("Labirinto")
 all_sprites = pygame.sprite.Group()
 
 walls = pygame.sprite.Group()
+chaves_verde = pygame.sprite.Group()
+chaves_azul = pygame.sprite.Group()
+chaves_vermelha = pygame.sprite.Group()
 
 
 # Criar o jogador
 
-player = Player()
-
-all_sprites.add(player)
-
-
-# Criar as paredes do labirinto
-
-create_maze()
-
-all_sprites.add(walls)
 
 
 clock = pygame.time.Clock()
@@ -173,6 +278,26 @@ clock = pygame.time.Clock()
 # Loop principal do jogo
 
 while True:
+
+    player = Player()
+
+    all_sprites.add(player)
+
+
+    # Criar as paredes do labirinto
+
+    create_maze()
+
+    all_sprites.add(walls)
+    all_sprites.add(chaves_verde)
+    all_sprites.add(chaves_azul)
+    all_sprites.add(chaves_vermelha)
+    
+
+    # Atualizar o jogador
+
+    player.update(dx, dy, chaves_coletadas)
+
 
     for event in pygame.event.get():
 
@@ -206,9 +331,9 @@ while True:
         dy = 4
 
 
-    # Atualizar o jogador
+    
 
-    player.update(dx, dy)
+    
 
 
     # Limpar a tela
@@ -220,6 +345,7 @@ while True:
 
     all_sprites.draw(screen)
 
+    screen.blit(texto_chaves, (SCREEN_WIDTH - 200, 50))  # Exibir o texto no canto superior direito
 
     # Atualizar a tela
 
