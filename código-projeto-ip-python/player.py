@@ -29,9 +29,14 @@ class Player(pygame.sprite.Sprite):
         elif self.select_character == "ASSASSIN":
             self.image = self.game.character_D_spritesheet.get_sprite(ASSASSIN_DOWN_ANIMATION_FRAME_1_X, ASSASSIN_DOWN_ANIMATION_Y, ASSASSIN_DOWN_ANIMATION_WIDTH, ASSASSIN_DOWN_ANIMATION_FRAME_1_HEIGHT)
         
+        self.image = pygame.Surface((32, 45))
+
         self.rect = self.image.get_rect()
         self.rect.x = self.x
         self.rect.y = self.y
+
+
+        self.image.blit(self.image, self.rect)
 
         self.change_x = 0
         self.change_y = 0
@@ -69,6 +74,8 @@ class Player(pygame.sprite.Sprite):
 
         if self.select_character == 'ASSASSIN':
             self.image = pygame.transform.scale(self.image, (30, 50))
+        elif self.select_character == 'ARCHER':
+            self.image = pygame.transform.scale(self.image, (40, 50))
         else:
             self.image = pygame.transform.scale(self.image, (50, 50))
 
