@@ -93,6 +93,11 @@ class Player(pygame.sprite.Sprite):
                             self.game.character_spritesheet.get_sprite(KNIGHT_DOWN_ANIMATION_FRAME_2_X, KNIGHT_DOWN_ANIMATION_Y, KNIGHT_DOWN_ANIMATION_WIDTH, KNIGHT_DOWN_ANIMATION_FRAME_2_3_HEIGHT),
                             self.game.character_spritesheet.get_sprite(KNIGHT_DOWN_ANIMATION_FRAME_3_X, KNIGHT_DOWN_ANIMATION_Y, KNIGHT_DOWN_ANIMATION_WIDTH, KNIGHT_DOWN_ANIMATION_FRAME_2_3_HEIGHT)
                             ]
+            
+            right_animations = [
+                self.game.character_R_spritesheet.get_sprite(21, 5, 181, 317),
+                self.game.character_R_spritesheet.get_sprite(230, 5, 181, 317)
+                ]
 
         elif self.select_character == 'MAGE':
             down_animations = [
@@ -127,6 +132,7 @@ class Player(pygame.sprite.Sprite):
                 self.animation_loop += 0.1
                 if self.animation_loop >= 3:
                     self.animation_loop = 1
+                    
 
     def collide_blocks(self, direction):
         # if direction == "x":

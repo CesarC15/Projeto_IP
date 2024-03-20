@@ -18,7 +18,7 @@ class Wall(pygame.sprite.Sprite):
         self.height = TILESIZE
 
         # self.image = self.game.block_sprite.get_sprite(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)
-        self.image = self.game.terrain_spritesheet.get_sprite(960, 448, self.width, self.height)  
+        self.image = self.game.terrain_spritesheet.get_sprite(WALL_X, WALL_Y, self.width, self.height)  
         self.image.set_colorkey(BLACK)
         self.rect = self.image.get_rect()
 

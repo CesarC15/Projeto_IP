@@ -11,8 +11,7 @@ from blue_key import *
 from red_key import *
 import sys
 
-"REVER O CÓDIGO, ACHO QUE TODAS AS FUNÇÕES ESTÃ FUNCIONANDO CORRETAMENTE EXCETO A FUNÇÃO DE GAME OVER (MÉDIA PRIORIDADE)" 
-"A FUNÇÃO DE GAME_OVER NÃO ESTÁ FUNCIONANDO POR ALGUM MOTIVO, QUALQUER COISA RETIRAMOS ELA"
+"REVER O CÓDIGO, ACHO QUE TODAS AS FUNÇÕES ESTÃ FUNCIONANDO CORRETAMENTE (MÉDIA PRIORIDADE)" 
 "ADICIONEI AS CHAVES"
 
 class Game:
@@ -64,6 +63,7 @@ class Game:
                 if column == 'P':
                     if self.select_screen() == "KNIGHT":
                         self.character_spritesheet = Spritesheet('./img/cavaleiro_front.png')
+                        self.character_R_spritesheet = Spritesheet('.img/cavaleiro_right.png')
                         Player(self, j, i, "KNIGHT")
                         self.attack_spritesheet = Spritesheet('./img/knight_assassin_attack.png')
 
@@ -128,7 +128,8 @@ class Game:
         text = self.font.render('Game Over', True, WHITE)
         text_rect = text.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
 
-        restart_button = Button(10, SCREEN_HEIGHT - 60, 120, 50, WHITE, BLACK, 'Restart', 32)
+        restart_button = Button(10, SCREEN_HEIGHT - 60, 120, 50, WHITE, BLACK, 'RESTART', 30)
+        exit_go_button = Button(510, SCREEN_HEIGHT - 60, 120, 50, WHITE, BLACK, 'QUIT', 32)
 
         for sprite in self.all_sprites:
             sprite.kill()
@@ -140,7 +141,7 @@ class Game:
                     self.running == False
             
             mouse_pos = pygame.mouse.get_pos()
-            mouse_pressed = pygame.mouse.get_pressed
+            mouse_pressed = pygame.mouse.get_pressed()
 
             if restart_button.is_pressed(mouse_pos, mouse_pressed):
                 game_over_screen = False
@@ -148,9 +149,16 @@ class Game:
                 self.new()
                 self.main()
 
+            if exit_go_button.is_pressed(mouse_pos, mouse_pressed):
+                game_over_screen = False
+                self.running = False
+                pygame.quit
+                sys.exit()
+
             self.screen.blit(self.gameover_background, (0, 0))
             self.screen.blit(text, text_rect)
             self.screen.blit(restart_button.image, restart_button.rect)
+            self.screen.blit(exit_go_button.image, exit_go_button.rect)
             self.clock.tick(FPS)
             pygame.display.update()
     
@@ -162,7 +170,7 @@ class Game:
 
         play_button = Button(PLAY_BUTTON_X, PLAY_BUTTON_Y, INTRO_BUTTON_WIDTH, INTRO_BUTTON_HEIGHT, WHITE, BLACK, "JOGAR", FONT_SIZE_INTRO_SCREEN)
 
-        exit_button = Button(EXIT_BUTTON_X, EXIT_BUTTON_Y, INTRO_BUTTON_WIDTH, INTRO_BUTTON_HEIGHT, WHITE, BLACK, "SAIR", FONT_SIZE_INTRO_SCREEN)
+        exit_intro_button = Button(EXIT_BUTTON_X, EXIT_BUTTON_Y, INTRO_BUTTON_WIDTH, INTRO_BUTTON_HEIGHT, WHITE, BLACK, "SAIR", FONT_SIZE_INTRO_SCREEN)
 
         while intro:
             for event in pygame.event.get():
@@ -173,7 +181,7 @@ class Game:
             mouse_pos = pygame.mouse.get_pos()
             mouse_pressed = pygame.mouse.get_pressed()
 
-            if exit_button.is_pressed(mouse_pos, mouse_pressed):
+            if exit_intro_button.is_pressed(mouse_pos, mouse_pressed):
                 intro = False
                 self.running = False
                 pygame.quit
@@ -185,7 +193,7 @@ class Game:
             self.screen.blit(self.intro_background, (0,0))
             self.screen.blit(title, title_rect)
             self.screen.blit(play_button.image, play_button.rect)
-            self.screen.blit(exit_button.image, exit_button.rect)
+            self.screen.blit(exit_intro_button.image, exit_intro_button.rect)
             self.clock.tick(FPS)
             pygame.display.update()
 
@@ -250,7 +258,8 @@ g.new()
 
 while g.running:
     g.main()
-    g.game_over()
+    if g.running:
+        g.game_over()
 
 pygame.quit
 sys.exit()
