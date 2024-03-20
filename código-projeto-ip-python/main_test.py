@@ -39,6 +39,7 @@ class Game:
         self.enemy_mage_spritesheet = Spritesheet('./img/enemy_mage.png')
         self.enemy_archer_spritesheet = Spritesheet('./img/enemy_archer.png')
         self.enemy_assassin_spritesheet = Spritesheet('./img/enemy_assassin.png')
+        self.character_spritesheet = Spritesheet('./img/character.png')
 
     def create_maze(self):
         for i, row in enumerate(maze):
@@ -61,37 +62,38 @@ class Game:
                     Enemy(self, j, i)
 
                 if column == 'P':
-                    if self.select_screen() == "KNIGHT":
-                        self.character_D_spritesheet = Spritesheet('./img/cavaleiro_front.png')
-                        self.character_L_spritesheet = Spritesheet('./img/cavaleiro_left.png')
-                        self.character_R_spritesheet = Spritesheet('./img/cavaleiro_right.png')
-                        self.character_U_spritesheet = Spritesheet('./img/cavaleiro_back.png')
-                        Player(self, j, i, "KNIGHT")
-                        self.attack_spritesheet = Spritesheet('./img/knight_assassin_attack.png')
+                    Player(self, j, i)
+                    # if self.select_screen() == "KNIGHT":
+                    #     self.character_D_spritesheet = Spritesheet('./img/cavaleiro_front.png')
+                    #     self.character_L_spritesheet = Spritesheet('./img/cavaleiro_left.png')
+                    #     self.character_R_spritesheet = Spritesheet('./img/cavaleiro_right.png')
+                    #     self.character_U_spritesheet = Spritesheet('./img/cavaleiro_back.png')
+                    #     Player(self, j, i, "KNIGHT")
+                    #     self.attack_spritesheet = Spritesheet('./img/knight_assassin_attack.png')
 
-                    if self.select_screen() == "MAGE":
-                        self.character_D_spritesheet = Spritesheet('./img/mago_front.png')
-                        self.character_L_spritesheet = Spritesheet('./img/mago_left.png')
-                        self.character_R_spritesheet = Spritesheet('./img/mago_right.png')
-                        self.character_U_spritesheet = Spritesheet('./img/mago_back.png')
-                        Player(self, j, i, "MAGE")
-                        self.attack_spritesheet = Spritesheet('./img/mage_attack.png')
+                    # if self.select_screen() == "MAGE":
+                    #     self.character_D_spritesheet = Spritesheet('./img/mago_front.png')
+                    #     self.character_L_spritesheet = Spritesheet('./img/mago_left.png')
+                    #     self.character_R_spritesheet = Spritesheet('./img/mago_right.png')
+                    #     self.character_U_spritesheet = Spritesheet('./img/mago_back.png')
+                    #     Player(self, j, i, "MAGE")
+                    #     self.attack_spritesheet = Spritesheet('./img/mage_attack.png')
 
-                    if self.select_screen() == "ARCHER":
-                        self.character_D_spritesheet = Spritesheet('./img/arqueiro_front.png')
-                        self.character_L_spritesheet = Spritesheet('./img/arqueiro_left.png')
-                        self.character_R_spritesheet = Spritesheet('./img/arqueiro_right.png')
-                        self.character_U_spritesheet = Spritesheet('./img/arqueiro_back.png')
-                        Player(self, j, i, "ARCHER")
-                        self.attack_spritesheet = Spritesheet('./img/archer_attack.png')
+                    # if self.select_screen() == "ARCHER":
+                    #     self.character_D_spritesheet = Spritesheet('./img/arqueiro_front.png')
+                    #     self.character_L_spritesheet = Spritesheet('./img/arqueiro_left.png')
+                    #     self.character_R_spritesheet = Spritesheet('./img/arqueiro_right.png')
+                    #     self.character_U_spritesheet = Spritesheet('./img/arqueiro_back.png')
+                    #     Player(self, j, i, "ARCHER")
+                    #     self.attack_spritesheet = Spritesheet('./img/archer_attack.png')
 
-                    if self.select_screen() == "ASSASSIN":
-                        self.character_D_spritesheet = Spritesheet('./img/assassino_front.png')
-                        self.character_L_spritesheet = Spritesheet('./img/assassino_left.png')
-                        self.character_R_spritesheet = Spritesheet('./img/assassino_right.png')
-                        self.character_U_spritesheet = Spritesheet('./img/assassino_back.png')
-                        Player(self, j, i, "ASSASSIN")
-                        self.attack_spritesheet = Spritesheet('./img/knight_assassin_attack.png')
+                    # if self.select_screen() == "ASSASSIN":
+                    #     self.character_D_spritesheet = Spritesheet('./img/assassino_front.png')
+                    #     self.character_L_spritesheet = Spritesheet('./img/assassino_left.png')
+                    #     self.character_R_spritesheet = Spritesheet('./img/assassino_right.png')
+                    #     self.character_U_spritesheet = Spritesheet('./img/assassino_back.png')
+                    #     Player(self, j, i, "ASSASSIN")
+                    #     self.attack_spritesheet = Spritesheet('./img/knight_assassin_attack.png')
     
     def new(self):
         self.playing = True
@@ -139,7 +141,7 @@ class Game:
         text = self.font.render('Game Over', True, WHITE)
         text_rect = text.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
 
-        restart_button = Button(10, SCREEN_HEIGHT - 60, 120, 50, WHITE, BLACK, 'RESTART', 30)
+        restart_button = Button(10, SCREEN_HEIGHT - 60, 120, 50, WHITE, BLACK, 'RESTART', 26)
         exit_go_button = Button(510, SCREEN_HEIGHT - 60, 120, 50, WHITE, BLACK, 'QUIT', 32)
 
         for sprite in self.all_sprites:
@@ -156,7 +158,7 @@ class Game:
 
             if restart_button.is_pressed(mouse_pos, mouse_pressed):
                 game_over_screen = False
-                self.select_screen()
+                # self.select_screen()
                 self.new()
                 self.main()
 
@@ -208,63 +210,63 @@ class Game:
             self.clock.tick(FPS)
             pygame.display.update()
 
-    def select_screen(self):
-        if self.running:
-            select = True
+    # def select_screen(self):
+    #     if self.running:
+    #         select = True
 
-            select_title = self.font.render('ESCOLHA SEU PERSONAGEM', True, FONT_SIZE_INTRO_SCREEN, WHITE)
-            select_title_rect = select_title.get_rect(x = TITLE_SELECT_SCREEN_X, y = TITLE_SELECT_SCREEN_Y)
+    #         select_title = self.font.render('ESCOLHA SEU PERSONAGEM', True, FONT_SIZE_INTRO_SCREEN, WHITE)
+    #         select_title_rect = select_title.get_rect(x = TITLE_SELECT_SCREEN_X, y = TITLE_SELECT_SCREEN_Y)
 
-            knight_button = Button(KNIGHT_BUTTON_X, KNIGHT_BUTTON_Y, SELECT_BUTTON_WIDTH, SELECT_BUTTON_HEIGHT, WHITE, BLACK, "KNIGHT", FONT_SIZE_SELECT_SCREEN)
-            mage_button = Button(MAGE_BUTTON_X, MAGE_BUTTON_Y, SELECT_BUTTON_WIDTH, SELECT_BUTTON_HEIGHT, WHITE, BLACK, "MAGE", FONT_SIZE_SELECT_SCREEN)
-            archer_button = Button(ARCHER_BUTTON_X, ARCHER_BUTTON_Y, SELECT_BUTTON_WIDTH, SELECT_BUTTON_HEIGHT, WHITE, BLACK, "ARCHER", FONT_SIZE_SELECT_SCREEN)
-            assassin_button = Button(ASSASSIN_BUTTON_X, ASSASSIN_BUTTON_Y, SELECT_BUTTON_WIDTH, SELECT_BUTTON_HEIGHT, WHITE, BLACK, "ASSASSIN", FONT_SIZE_SELECT_SCREEN)
-            back_button = Button(BACK_BUTTON_X, BACK_BUTTON_Y, SELECT_BUTTON_WIDTH, SELECT_BUTTON_HEIGHT, WHITE, BLACK, "VOLTAR", FONT_SIZE_SELECT_SCREEN)
+    #         knight_button = Button(KNIGHT_BUTTON_X, KNIGHT_BUTTON_Y, SELECT_BUTTON_WIDTH, SELECT_BUTTON_HEIGHT, WHITE, BLACK, "KNIGHT", FONT_SIZE_SELECT_SCREEN)
+    #         mage_button = Button(MAGE_BUTTON_X, MAGE_BUTTON_Y, SELECT_BUTTON_WIDTH, SELECT_BUTTON_HEIGHT, WHITE, BLACK, "MAGE", FONT_SIZE_SELECT_SCREEN)
+    #         archer_button = Button(ARCHER_BUTTON_X, ARCHER_BUTTON_Y, SELECT_BUTTON_WIDTH, SELECT_BUTTON_HEIGHT, WHITE, BLACK, "ARCHER", FONT_SIZE_SELECT_SCREEN)
+    #         assassin_button = Button(ASSASSIN_BUTTON_X, ASSASSIN_BUTTON_Y, SELECT_BUTTON_WIDTH, SELECT_BUTTON_HEIGHT, WHITE, BLACK, "ASSASSIN", FONT_SIZE_SELECT_SCREEN)
+    #         back_button = Button(BACK_BUTTON_X, BACK_BUTTON_Y, SELECT_BUTTON_WIDTH, SELECT_BUTTON_HEIGHT, WHITE, BLACK, "VOLTAR", FONT_SIZE_SELECT_SCREEN)
 
-            while select:
-                for event in pygame.event.get():
-                    if event.type == pygame.QUIT:
-                        self.running = False
-                        select = False
+    #         while select:
+    #             for event in pygame.event.get():
+    #                 if event.type == pygame.QUIT:
+    #                     self.running = False
+    #                     select = False
 
-                mouse_pos = pygame.mouse.get_pos()
-                mouse_pressed = pygame.mouse.get_pressed()
+    #             mouse_pos = pygame.mouse.get_pos()
+    #             mouse_pressed = pygame.mouse.get_pressed()
 
-                if knight_button.is_pressed(mouse_pos, mouse_pressed):
-                    select = False
-                    return "KNIGHT"
+    #             if knight_button.is_pressed(mouse_pos, mouse_pressed):
+    #                 select = False
+    #                 return "KNIGHT"
 
-                if mage_button.is_pressed(mouse_pos, mouse_pressed):
-                    select = False
-                    return "MAGE"
+    #             if mage_button.is_pressed(mouse_pos, mouse_pressed):
+    #                 select = False
+    #                 return "MAGE"
                 
-                if archer_button.is_pressed(mouse_pos, mouse_pressed):
-                    select = False
-                    return "ARCHER"
+    #             if archer_button.is_pressed(mouse_pos, mouse_pressed):
+    #                 select = False
+    #                 return "ARCHER"
                 
-                if assassin_button.is_pressed(mouse_pos, mouse_pressed):
-                    select = False
-                    return "ASSASSIN"
+    #             if assassin_button.is_pressed(mouse_pos, mouse_pressed):
+    #                 select = False
+    #                 return "ASSASSIN"
                 
-                if back_button.is_pressed(mouse_pos, mouse_pressed):
-                    select = False
-                    self.intro_screen()
+    #             if back_button.is_pressed(mouse_pos, mouse_pressed):
+    #                 select = False
+    #                 self.intro_screen()
 
-                self.screen.blit(self.select_screen_background, (0,0))
-                self.screen.blit(select_title, select_title_rect)
-                self.screen.blit(knight_button.image, knight_button.rect)
-                self.screen.blit(mage_button.image, mage_button.rect)
-                self.screen.blit(archer_button.image, archer_button.rect)
-                self.screen.blit(assassin_button.image, assassin_button.rect)
-                self.screen.blit(back_button.image, back_button.rect)
-                self.clock.tick(FPS)
-                self.playing = True
+    #             self.screen.blit(self.select_screen_background, (0,0))
+    #             self.screen.blit(select_title, select_title_rect)
+    #             self.screen.blit(knight_button.image, knight_button.rect)
+    #             self.screen.blit(mage_button.image, mage_button.rect)
+    #             self.screen.blit(archer_button.image, archer_button.rect)
+    #             self.screen.blit(assassin_button.image, assassin_button.rect)
+    #             self.screen.blit(back_button.image, back_button.rect)
+    #             self.clock.tick(FPS)
+    #             self.playing = True
 
-                pygame.display.update()
+    #             pygame.display.update()
 
 g = Game()
 g.intro_screen()
-g.select_screen()
+# g.select_screen()
 g.new()
 
 while g.running:

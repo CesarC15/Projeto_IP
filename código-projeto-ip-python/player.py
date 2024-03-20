@@ -21,19 +21,17 @@ class Player(pygame.sprite.Sprite):
         self.select_character = select_character
 
         if self.select_character == "KNIGHT":
-            self.image = self.game.character_spritesheet.get_sprite(KNIGHT_DOWN_ANIMATION_FRAME_1_X, KNIGHT_DOWN_ANIMATION_Y, KNIGHT_DOWN_ANIMATION_WIDTH, KNIGHT_DOWN_ANIMATION_FRAME_1_HEIGHT)
+            self.image = self.game.character_D_spritesheet.get_sprite(KNIGHT_DOWN_ANIMATION_FRAME_1_X, KNIGHT_DOWN_ANIMATION_Y, KNIGHT_DOWN_ANIMATION_WIDTH, KNIGHT_DOWN_ANIMATION_FRAME_1_HEIGHT)
         elif self.select_character == "MAGE":
-            self.image = self.game.character_spritesheet.get_sprite(MAGE_DOWN_ANIMATION_FRAME_1_X, MAGE_DOWN_ANIMATION_Y, MAGE_DOWN_ANIMATION_WIDTH, MAGE_DOWN_ANIMATION_HEIGHT)
+            self.image = self.game.character_D_spritesheet.get_sprite(MAGE_DOWN_ANIMATION_FRAME_1_X, MAGE_DOWN_ANIMATION_Y, MAGE_DOWN_ANIMATION_WIDTH, MAGE_DOWN_ANIMATION_HEIGHT)
         elif self.select_character == "ARCHER":
-            self.image = self.game.character_spritesheet.get_sprite(ARCHER_DOWN_ANIMATION_FRAME_1_X, ARCHER_DOWN_ANIMATION_Y, ARCHER_DOWN_ANIMATION_WIDTH, ARCHER_DOWN_ANIMATION_FRAME_1_HEIGHT)
+            self.image = self.game.character_D_spritesheet.get_sprite(ARCHER_DOWN_ANIMATION_FRAME_1_X, ARCHER_DOWN_ANIMATION_Y, ARCHER_DOWN_ANIMATION_WIDTH, ARCHER_DOWN_ANIMATION_FRAME_1_HEIGHT)
         elif self.select_character == "ASSASSIN":
-            self.image = self.game.character_spritesheet.get_sprite(ASSASSIN_DOWN_ANIMATION_FRAME_1_X, ASSASSIN_DOWN_ANIMATION_Y, ASSASSIN_DOWN_ANIMATION_WIDTH, ASSASSIN_DOWN_ANIMATION_FRAME_1_HEIGHT)
+            self.image = self.game.character_D_spritesheet.get_sprite(ASSASSIN_DOWN_ANIMATION_FRAME_1_X, ASSASSIN_DOWN_ANIMATION_Y, ASSASSIN_DOWN_ANIMATION_WIDTH, ASSASSIN_DOWN_ANIMATION_FRAME_1_HEIGHT)
         
         self.rect = self.image.get_rect()
         self.rect.x = self.x
         self.rect.y = self.y
-
-        self.image.blit(self.image, self.rect)
 
         self.change_x = 0
         self.change_y = 0
@@ -72,7 +70,7 @@ class Player(pygame.sprite.Sprite):
         if self.select_character == 'ASSASSIN':
             self.image = pygame.transform.scale(self.image, (30, 50))
         else:
-            self.image = pygame.transform.scale(self.image, (50,50))
+            self.image = pygame.transform.scale(self.image, (50, 50))
 
         self.rect.x += self.change_x
         self.collide_blocks('x')
@@ -92,44 +90,174 @@ class Player(pygame.sprite.Sprite):
     def animate(self):
         if self.select_character == 'KNIGHT':
             down_animations = [
-                            self.game.character_spritesheet.get_sprite(KNIGHT_DOWN_ANIMATION_FRAME_1_X, KNIGHT_DOWN_ANIMATION_Y, KNIGHT_DOWN_ANIMATION_WIDTH, KNIGHT_DOWN_ANIMATION_FRAME_1_HEIGHT),
-                            self.game.character_spritesheet.get_sprite(KNIGHT_DOWN_ANIMATION_FRAME_2_X, KNIGHT_DOWN_ANIMATION_Y, KNIGHT_DOWN_ANIMATION_WIDTH, KNIGHT_DOWN_ANIMATION_FRAME_2_3_HEIGHT),
-                            self.game.character_spritesheet.get_sprite(KNIGHT_DOWN_ANIMATION_FRAME_3_X, KNIGHT_DOWN_ANIMATION_Y, KNIGHT_DOWN_ANIMATION_WIDTH, KNIGHT_DOWN_ANIMATION_FRAME_2_3_HEIGHT)
-                            ]
+                self.game.character_D_spritesheet.get_sprite(KNIGHT_DOWN_ANIMATION_FRAME_1_X, KNIGHT_DOWN_ANIMATION_Y, KNIGHT_DOWN_ANIMATION_WIDTH, KNIGHT_DOWN_ANIMATION_FRAME_1_HEIGHT),
+                self.game.character_D_spritesheet.get_sprite(KNIGHT_DOWN_ANIMATION_FRAME_2_X, KNIGHT_DOWN_ANIMATION_Y, KNIGHT_DOWN_ANIMATION_WIDTH, KNIGHT_DOWN_ANIMATION_FRAME_2_3_HEIGHT),
+                self.game.character_D_spritesheet.get_sprite(KNIGHT_DOWN_ANIMATION_FRAME_3_X, KNIGHT_DOWN_ANIMATION_Y, KNIGHT_DOWN_ANIMATION_WIDTH, KNIGHT_DOWN_ANIMATION_FRAME_2_3_HEIGHT)
+                ]
+            
+            up_animations = [
+                self.game.character_U_spritesheet.get_sprite(KNIGHT_UP_ANIMATION_FRAME_1_X, KNIGHT_UP_ANIMATION_Y, KNIGHT_UP_ANIMATION_WIDTH, KNIGHT_UP_ANIMATION_HEIGHT),
+                self.game.character_U_spritesheet.get_sprite(KNIGHT_UP_ANIMATION_FRAME_2_X, KNIGHT_UP_ANIMATION_Y, KNIGHT_UP_ANIMATION_WIDTH, KNIGHT_UP_ANIMATION_HEIGHT),
+                self.game.character_U_spritesheet.get_sprite(KNIGHT_UP_ANIMATION_FRAME_3_X, KNIGHT_UP_ANIMATION_Y, KNIGHT_UP_ANIMATION_WIDTH, KNIGHT_UP_ANIMATION_HEIGHT)
+            ]
+            
+            right_animations = [
+                self.game.character_R_spritesheet.get_sprite(KNIGHT_RIGHT_ANIMATION_FRAME_1_X, KNIGHT_RIGHT_ANIMATION_Y, KNIGHT_RIGHT_ANIMATION_WIDTH, KNIGHT_RIGHT_ANIMATION_HEIGHT),
+                self.game.character_R_spritesheet.get_sprite(KNIGHT_RIGHT_ANIMATION_FRAME_2_X, KNIGHT_RIGHT_ANIMATION_Y, KNIGHT_RIGHT_ANIMATION_WIDTH, KNIGHT_RIGHT_ANIMATION_HEIGHT),
+                self.game.character_R_spritesheet.get_sprite(KNIGHT_RIGHT_ANIMATION_FRAME_1_X, KNIGHT_RIGHT_ANIMATION_Y, KNIGHT_RIGHT_ANIMATION_WIDTH, KNIGHT_RIGHT_ANIMATION_HEIGHT)
+                ]
+            
+            left_animations = [
+                self.game.character_L_spritesheet.get_sprite(KNIGHT_LEFT_ANIMATION_FRAME_1_X, KNIGHT_LEFT_ANIMATION_Y, KNIGHT_LEFT_ANIMATION_WIDTH, KNIGHT_LEFT_ANIMATION_HEIGHT),
+                self.game.character_L_spritesheet.get_sprite(KNIGHT_LEFT_ANIMATION_FRAME_2_X, KNIGHT_LEFT_ANIMATION_Y, KNIGHT_LEFT_ANIMATION_WIDTH, KNIGHT_LEFT_ANIMATION_HEIGHT),
+                self.game.character_L_spritesheet.get_sprite(KNIGHT_LEFT_ANIMATION_FRAME_1_X, KNIGHT_LEFT_ANIMATION_Y, KNIGHT_LEFT_ANIMATION_WIDTH, KNIGHT_LEFT_ANIMATION_HEIGHT)
+            ]
 
         elif self.select_character == 'MAGE':
             down_animations = [
-                            self.game.character_spritesheet.get_sprite(MAGE_DOWN_ANIMATION_FRAME_1_X, MAGE_DOWN_ANIMATION_Y, MAGE_DOWN_ANIMATION_WIDTH, MAGE_DOWN_ANIMATION_HEIGHT),
-                            self.game.character_spritesheet.get_sprite(MAGE_DOWN_ANIMATION_FRAME_2_X, MAGE_DOWN_ANIMATION_Y, MAGE_DOWN_ANIMATION_WIDTH, MAGE_DOWN_ANIMATION_HEIGHT),
-                            self.game.character_spritesheet.get_sprite(MAGE_DOWN_ANIMATION_FRAME_3_X, MAGE_DOWN_ANIMATION_Y, MAGE_DOWN_ANIMATION_WIDTH, MAGE_DOWN_ANIMATION_HEIGHT)
+                            self.game.character_D_spritesheet.get_sprite(MAGE_DOWN_ANIMATION_FRAME_1_X, MAGE_DOWN_ANIMATION_Y, MAGE_DOWN_ANIMATION_WIDTH, MAGE_DOWN_ANIMATION_HEIGHT),
+                            self.game.character_D_spritesheet.get_sprite(MAGE_DOWN_ANIMATION_FRAME_2_X, MAGE_DOWN_ANIMATION_Y, MAGE_DOWN_ANIMATION_WIDTH, MAGE_DOWN_ANIMATION_HEIGHT),
+                            self.game.character_D_spritesheet.get_sprite(MAGE_DOWN_ANIMATION_FRAME_3_X, MAGE_DOWN_ANIMATION_Y, MAGE_DOWN_ANIMATION_WIDTH, MAGE_DOWN_ANIMATION_HEIGHT)
+                            ]
+            
+            up_animations = [
+                            self.game.character_U_spritesheet.get_sprite(MAGE_UP_ANIMATION_FRAME_X, MAGE_UP_ANIMATION_Y, MAGE_UP_ANIMATION_WIDTH, MAGE_UP_ANIMATION_HEIGHT),
+                            self.game.character_U_spritesheet.get_sprite(MAGE_UP_ANIMATION_FRAME_X, MAGE_UP_ANIMATION_Y, MAGE_UP_ANIMATION_WIDTH, MAGE_UP_ANIMATION_HEIGHT),
+                            self.game.character_U_spritesheet.get_sprite(MAGE_UP_ANIMATION_FRAME_X, MAGE_UP_ANIMATION_Y, MAGE_UP_ANIMATION_WIDTH, MAGE_UP_ANIMATION_HEIGHT)
+                            ]
+            
+            right_animations = [
+                            self.game.character_R_spritesheet.get_sprite(MAGE_RIGHT_ANIMATION_FRAME_X, MAGE_RIGHT_ANIMATION_Y, MAGE_RIGHT_ANIMATION_WIDTH, MAGE_RIGHT_ANIMATION_HEIGHT),
+                            self.game.character_R_spritesheet.get_sprite(MAGE_RIGHT_ANIMATION_FRAME_X, MAGE_RIGHT_ANIMATION_Y, MAGE_RIGHT_ANIMATION_WIDTH, MAGE_RIGHT_ANIMATION_HEIGHT),
+                            self.game.character_R_spritesheet.get_sprite(MAGE_RIGHT_ANIMATION_FRAME_X, MAGE_RIGHT_ANIMATION_Y, MAGE_RIGHT_ANIMATION_WIDTH, MAGE_RIGHT_ANIMATION_HEIGHT)
+                            ]
+
+            left_animations = [
+                            self.game.character_L_spritesheet.get_sprite(MAGE_LEFT_ANIMATION_FRAME_X, MAGE_LEFT_ANIMATION_Y, MAGE_LEFT_ANIMATION_WIDTH, MAGE_LEFT_ANIMATION_HEIGHT),
+                            self.game.character_L_spritesheet.get_sprite(MAGE_LEFT_ANIMATION_FRAME_X, MAGE_LEFT_ANIMATION_Y, MAGE_LEFT_ANIMATION_WIDTH, MAGE_LEFT_ANIMATION_HEIGHT),
+                            self.game.character_L_spritesheet.get_sprite(MAGE_LEFT_ANIMATION_FRAME_X, MAGE_LEFT_ANIMATION_Y, MAGE_LEFT_ANIMATION_WIDTH, MAGE_LEFT_ANIMATION_HEIGHT)
                             ]
 
         elif self.select_character == 'ARCHER':
-            down_animations = [self.game.character_spritesheet.get_sprite(ARCHER_DOWN_ANIMATION_FRAME_1_X, ARCHER_DOWN_ANIMATION_Y, ARCHER_DOWN_ANIMATION_WIDTH, ARCHER_DOWN_ANIMATION_FRAME_1_HEIGHT),
-                            self.game.character_spritesheet.get_sprite(ARCHER_DOWN_ANIMATION_FRAME_2_X, ARCHER_DOWN_ANIMATION_Y, ARCHER_DOWN_ANIMATION_WIDTH, ARCHER_DOWN_ANIMATION_FRAME_2_3_HEIGHT),
-                            self.game.character_spritesheet.get_sprite(ARCHER_DOWN_ANIMATION_FRAME_3_X, ARCHER_DOWN_ANIMATION_Y, ARCHER_DOWN_ANIMATION_WIDTH, ARCHER_DOWN_ANIMATION_FRAME_2_3_HEIGHT)]
+            down_animations = [
+                self.game.character_D_spritesheet.get_sprite(ARCHER_DOWN_ANIMATION_FRAME_1_X, ARCHER_DOWN_ANIMATION_Y, ARCHER_DOWN_ANIMATION_WIDTH, ARCHER_DOWN_ANIMATION_FRAME_1_HEIGHT),
+                self.game.character_D_spritesheet.get_sprite(ARCHER_DOWN_ANIMATION_FRAME_2_X, ARCHER_DOWN_ANIMATION_Y, ARCHER_DOWN_ANIMATION_WIDTH, ARCHER_DOWN_ANIMATION_FRAME_2_3_HEIGHT),
+                self.game.character_D_spritesheet.get_sprite(ARCHER_DOWN_ANIMATION_FRAME_3_X, ARCHER_DOWN_ANIMATION_Y, ARCHER_DOWN_ANIMATION_WIDTH, ARCHER_DOWN_ANIMATION_FRAME_2_3_HEIGHT)
+                ]
+        
+            up_animations = [
+                self.game.character_U_spritesheet.get_sprite(ARCHER_UP_ANIMATION_FRAME_1_X, ARCHER_UP_ANIMATION_Y, ARCHER_UP_ANIMATION_WIDTH, ARCHER_UP_ANIMATION_HEIGHT),
+                self.game.character_U_spritesheet.get_sprite(ARCHER_UP_ANIMATION_FRAME_2_X, ARCHER_UP_ANIMATION_Y, ARCHER_UP_ANIMATION_WIDTH, ARCHER_UP_ANIMATION_HEIGHT),
+                self.game.character_U_spritesheet.get_sprite(ARCHER_UP_ANIMATION_FRAME_3_X, ARCHER_UP_ANIMATION_Y, ARCHER_UP_ANIMATION_WIDTH, ARCHER_UP_ANIMATION_HEIGHT)
+            ]
+
+            right_animations = [
+                self.game.character_R_spritesheet.get_sprite(ARCHER_RIGHT_ANIMATION_FRAME_1_X, ARCHER_RIGHT_ANIMATION_Y, ARCHER_RIGHT_ANIMATION_WIDTH, ARCHER_RIGHT_ANIMATION_HEIGHT),
+                self.game.character_R_spritesheet.get_sprite(ARCHER_RIGHT_ANIMATION_FRAME_2_X, ARCHER_RIGHT_ANIMATION_Y, ARCHER_RIGHT_ANIMATION_WIDTH, ARCHER_RIGHT_ANIMATION_HEIGHT),
+                self.game.character_R_spritesheet.get_sprite(ARCHER_RIGHT_ANIMATION_FRAME_1_X, ARCHER_RIGHT_ANIMATION_Y, ARCHER_RIGHT_ANIMATION_WIDTH, ASSASSIN_RIGHT_ANIMATION_HEIGHT)
+            ]
+
+            left_animations = [
+                self.game.character_L_spritesheet.get_sprite(ARCHER_LEFT_ANIMATION_FRAME_1_X, ARCHER_LEFT_ANIMATION_Y, ARCHER_LEFT_ANIMATION_WIDTH, ARCHER_LEFT_ANIMATION_HEIGHT),
+                self.game.character_L_spritesheet.get_sprite(ARCHER_LEFT_ANIMATION_FRAME_2_X, ARCHER_LEFT_ANIMATION_Y, ARCHER_LEFT_ANIMATION_WIDTH, ARCHER_LEFT_ANIMATION_HEIGHT),
+                self.game.character_L_spritesheet.get_sprite(ARCHER_LEFT_ANIMATION_FRAME_1_X, ARCHER_LEFT_ANIMATION_Y, ARCHER_LEFT_ANIMATION_WIDTH, ARCHER_LEFT_ANIMATION_HEIGHT)
+            ]
 
         elif self.select_character == 'ASSASSIN':
-            down_animations = [self.game.character_spritesheet.get_sprite(ASSASSIN_DOWN_ANIMATION_FRAME_1_X, ASSASSIN_DOWN_ANIMATION_Y, ASSASSIN_DOWN_ANIMATION_WIDTH, ASSASSIN_DOWN_ANIMATION_FRAME_1_HEIGHT),
-                            self.game.character_spritesheet.get_sprite(ASSASSIN_DOWN_ANIMATION_FRAME_2_X, ASSASSIN_DOWN_ANIMATION_Y, ASSASSIN_DOWN_ANIMATION_WIDTH, ASSASSIN_DOWN_ANIMATION_FRAME_2_3_HEIGHT),
-                            self.game.character_spritesheet.get_sprite(ASSASSIN_DOWN_ANIMATION_FRAME_3_X, ASSASSIN_DOWN_ANIMATION_Y, ASSASSIN_DOWN_ANIMATION_WIDTH, ASSASSIN_DOWN_ANIMATION_FRAME_2_3_HEIGHT)]
-        
-        if self.facing == 'DOWN' or self.facing == 'UP' or self.facing == 'RIGHT' or self.facing == 'LEFT':
-            if self.change_y == 0 and self.change_x == 0:
+            down_animations = [
+                self.game.character_D_spritesheet.get_sprite(ASSASSIN_DOWN_ANIMATION_FRAME_1_X, ASSASSIN_DOWN_ANIMATION_Y, ASSASSIN_DOWN_ANIMATION_WIDTH, ASSASSIN_DOWN_ANIMATION_FRAME_1_HEIGHT),
+                self.game.character_D_spritesheet.get_sprite(ASSASSIN_DOWN_ANIMATION_FRAME_2_X, ASSASSIN_DOWN_ANIMATION_Y, ASSASSIN_DOWN_ANIMATION_WIDTH, ASSASSIN_DOWN_ANIMATION_FRAME_2_3_HEIGHT),
+                self.game.character_D_spritesheet.get_sprite(ASSASSIN_DOWN_ANIMATION_FRAME_3_X, ASSASSIN_DOWN_ANIMATION_Y, ASSASSIN_DOWN_ANIMATION_WIDTH, ASSASSIN_DOWN_ANIMATION_FRAME_2_3_HEIGHT)
+                ]
+
+            up_animations = [
+                self.game.character_U_spritesheet.get_sprite(ASSASSIN_UP_ANIMATION_FRAME_1_X, ASSASSIN_UP_ANIMATION_Y, ASSASSIN_UP_ANIMATION_WIDTH, ASSASSIN_UP_ANIMATION_HEIGHT),
+                self.game.character_U_spritesheet.get_sprite(ASSASSIN_UP_ANIMATION_FRAME_2_X, ASSASSIN_UP_ANIMATION_Y, ASSASSIN_UP_ANIMATION_WIDTH, ASSASSIN_UP_ANIMATION_HEIGHT),
+                self.game.character_U_spritesheet.get_sprite(ASSASSIN_UP_ANIMATION_FRAME_3_X, ASSASSIN_UP_ANIMATION_Y, ASSASSIN_UP_ANIMATION_WIDTH, ASSASSIN_UP_ANIMATION_HEIGHT)
+            ]
+
+            right_animations = [
+                self.game.character_R_spritesheet.get_sprite(ASSASSIN_RIGHT_ANIMATION_FRAME_1_X, ASSASSIN_RIGHT_ANIMATION_Y, ASSASSIN_RIGHT_ANIMATION_WIDTH, ASSASSIN_RIGHT_ANIMATION_HEIGHT),
+                self.game.character_R_spritesheet.get_sprite(ASSASSIN_RIGHT_ANIMATION_FRAME_2_X, ASSASSIN_RIGHT_ANIMATION_Y, ASSASSIN_RIGHT_ANIMATION_WIDTH, ASSASSIN_RIGHT_ANIMATION_HEIGHT),
+                self.game.character_R_spritesheet.get_sprite(ASSASSIN_RIGHT_ANIMATION_FRAME_1_X, ASSASSIN_RIGHT_ANIMATION_Y, ASSASSIN_RIGHT_ANIMATION_WIDTH, ASSASSIN_RIGHT_ANIMATION_HEIGHT)
+            ]
+
+            left_animations = [
+                self.game.character_L_spritesheet.get_sprite(ASSASSIN_LEFT_ANIMATION_FRAME_1_X, ASSASSIN_LEFT_ANIMATION_Y, ASSASSIN_LEFT_ANIMATION_WIDTH, ASSASSIN_LEFT_ANIMATION_HEIGHT),
+                self.game.character_L_spritesheet.get_sprite(ASSASSIN_LEFT_ANIMATION_FRAME_2_X, ASSASSIN_LEFT_ANIMATION_Y, ASSASSIN_LEFT_ANIMATION_WIDTH, ASSASSIN_LEFT_ANIMATION_HEIGHT),
+                self.game.character_L_spritesheet.get_sprite(ASSASSIN_LEFT_ANIMATION_FRAME_1_X, ASSASSIN_LEFT_ANIMATION_Y, ASSASSIN_LEFT_ANIMATION_WIDTH, ASSASSIN_LEFT_ANIMATION_HEIGHT)
+            ]
+
+        if self.facing == 'DOWN':
+            if self.change_y == 0:
                 if self.select_character == "KNIGHT":
-                    self.image = self.game.character_spritesheet.get_sprite(KNIGHT_DOWN_ANIMATION_FRAME_1_X, KNIGHT_DOWN_ANIMATION_Y, KNIGHT_DOWN_ANIMATION_WIDTH, KNIGHT_DOWN_ANIMATION_FRAME_1_HEIGHT)
+                    self.image = self.game.character_D_spritesheet.get_sprite(KNIGHT_DOWN_ANIMATION_FRAME_1_X, KNIGHT_DOWN_ANIMATION_Y, KNIGHT_DOWN_ANIMATION_WIDTH, KNIGHT_DOWN_ANIMATION_FRAME_1_HEIGHT)
                 elif self.select_character == "MAGE":
-                    self.image == self.game.character_spritesheet.get_sprite(MAGE_DOWN_ANIMATION_FRAME_1_X, MAGE_DOWN_ANIMATION_Y, MAGE_DOWN_ANIMATION_WIDTH, MAGE_DOWN_ANIMATION_HEIGHT)
+                    self.image == self.game.character_D_spritesheet.get_sprite(MAGE_DOWN_ANIMATION_FRAME_1_X, MAGE_DOWN_ANIMATION_Y, MAGE_DOWN_ANIMATION_WIDTH, MAGE_DOWN_ANIMATION_HEIGHT)
                 elif self.select_character == "ARCHER":
-                    self.image = self.game.character_spritesheet.get_sprite(ARCHER_DOWN_ANIMATION_FRAME_1_X, ARCHER_DOWN_ANIMATION_Y, ARCHER_DOWN_ANIMATION_WIDTH, ARCHER_DOWN_ANIMATION_FRAME_1_HEIGHT)
+                    self.image = self.game.character_D_spritesheet.get_sprite(ARCHER_DOWN_ANIMATION_FRAME_1_X, ARCHER_DOWN_ANIMATION_Y, ARCHER_DOWN_ANIMATION_WIDTH, ARCHER_DOWN_ANIMATION_FRAME_1_HEIGHT)
                 elif self.select_character == "ASSASSIN":
-                    self.image = self.game.character_spritesheet.get_sprite(ASSASSIN_DOWN_ANIMATION_FRAME_1_X, ASSASSIN_DOWN_ANIMATION_Y, ASSASSIN_DOWN_ANIMATION_WIDTH, ASSASSIN_DOWN_ANIMATION_FRAME_1_HEIGHT)
+                    self.image = self.game.character_D_spritesheet.get_sprite(ASSASSIN_DOWN_ANIMATION_FRAME_1_X, ASSASSIN_DOWN_ANIMATION_Y, ASSASSIN_DOWN_ANIMATION_WIDTH, ASSASSIN_DOWN_ANIMATION_FRAME_1_HEIGHT)
             else:
                 self.image = down_animations[math.floor(self.animation_loop)]
 
                 self.animation_loop += 0.1
                 if self.animation_loop >= 3:
                     self.animation_loop = 1
+        
+        elif self.facing == 'UP':
+            if self.change_y == 0:
+                if self.select_character == "KNIGHT":
+                    self.image = self.game.character_U_spritesheet.get_sprite(KNIGHT_UP_ANIMATION_FRAME_1_X, KNIGHT_UP_ANIMATION_Y, KNIGHT_UP_ANIMATION_WIDTH, KNIGHT_UP_ANIMATION_HEIGHT)
+                elif self.select_character == "MAGE":
+                    self.image == self.game.character_U_spritesheet.get_sprite(MAGE_UP_ANIMATION_FRAME_X, MAGE_UP_ANIMATION_Y, MAGE_UP_ANIMATION_WIDTH, MAGE_UP_ANIMATION_HEIGHT)
+                elif self.select_character == "ARCHER":
+                    self.image = self.game.character_U_spritesheet.get_sprite(ARCHER_UP_ANIMATION_FRAME_1_X, ARCHER_UP_ANIMATION_Y, ARCHER_UP_ANIMATION_WIDTH, ARCHER_UP_ANIMATION_HEIGHT)
+                elif self.select_character == "ASSASSIN":
+                    self.image = self.game.character_U_spritesheet.get_sprite(ASSASSIN_UP_ANIMATION_FRAME_1_X, ASSASSIN_UP_ANIMATION_Y, ASSASSIN_UP_ANIMATION_WIDTH, ASSASSIN_UP_ANIMATION_HEIGHT)
+            else:
+                self.image = up_animations[math.floor(self.animation_loop)]
+
+                self.animation_loop += 0.1
+                if self.animation_loop >= 3:
+                    self.animation_loop = 1
+            
+        
+        elif self.facing == 'RIGHT':
+            if self.change_x == 0:
+                if self.select_character == "KNIGHT":
+                    self.image = self.game.character_R_spritesheet.get_sprite(KNIGHT_RIGHT_ANIMATION_FRAME_1_X, KNIGHT_RIGHT_ANIMATION_Y, KNIGHT_RIGHT_ANIMATION_WIDTH, KNIGHT_RIGHT_ANIMATION_HEIGHT)
+                elif self.select_character == "MAGE":
+                    self.image == self.game.character_R_spritesheet.get_sprite(MAGE_RIGHT_ANIMATION_FRAME_X, MAGE_RIGHT_ANIMATION_Y, MAGE_RIGHT_ANIMATION_WIDTH, MAGE_RIGHT_ANIMATION_HEIGHT)
+                elif self.select_character == "ARCHER":
+                    self.image = self.game.character_R_spritesheet.get_sprite(ARCHER_RIGHT_ANIMATION_FRAME_1_X, ARCHER_RIGHT_ANIMATION_Y, ARCHER_RIGHT_ANIMATION_WIDTH, ARCHER_RIGHT_ANIMATION_HEIGHT)
+                elif self.select_character == "ASSASSIN":
+                    self.image = self.game.character_R_spritesheet.get_sprite(ASSASSIN_RIGHT_ANIMATION_FRAME_1_X, ASSASSIN_RIGHT_ANIMATION_Y, ASSASSIN_RIGHT_ANIMATION_WIDTH, ASSASSIN_RIGHT_ANIMATION_HEIGHT)
+            else:
+                self.image = right_animations[math.floor(self.animation_loop)]
+
+                self.animation_loop += 0.1
+                if self.animation_loop >= 3:
+                    self.animation_loop = 1
+            
+        
+        elif self.facing == 'LEFT':
+            if self.change_x == 0:
+                if self.select_character == "KNIGHT":
+                    self.image = self.game.character_L_spritesheet.get_sprite(KNIGHT_LEFT_ANIMATION_FRAME_1_X, KNIGHT_LEFT_ANIMATION_Y, KNIGHT_LEFT_ANIMATION_WIDTH, KNIGHT_LEFT_ANIMATION_HEIGHT)
+                elif self.select_character == "MAGE":
+                    self.image == self.game.character_L_spritesheet.get_sprite(MAGE_LEFT_ANIMATION_FRAME_X, MAGE_LEFT_ANIMATION_Y, MAGE_LEFT_ANIMATION_WIDTH, MAGE_LEFT_ANIMATION_HEIGHT)
+                elif self.select_character == "ARCHER":
+                    self.image = self.game.character_L_spritesheet.get_sprite(ARCHER_LEFT_ANIMATION_FRAME_1_X, ARCHER_LEFT_ANIMATION_Y, ARCHER_LEFT_ANIMATION_WIDTH, ARCHER_LEFT_ANIMATION_HEIGHT)
+                elif self.select_character == "ASSASSIN":
+                    self.image = self.game.character_L_spritesheet.get_sprite(ASSASSIN_LEFT_ANIMATION_FRAME_1_X, ASSASSIN_LEFT_ANIMATION_Y, ASSASSIN_LEFT_ANIMATION_WIDTH, ASSASSIN_LEFT_ANIMATION_HEIGHT)
+            else:
+                self.image = left_animations[math.floor(self.animation_loop)]
+
+                self.animation_loop += 0.1
+                if self.animation_loop >= 3:
+                    self.animation_loop = 1
+            
                     
 
     def collide_blocks(self, direction):

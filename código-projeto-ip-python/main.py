@@ -62,22 +62,34 @@ class Game:
 
                 if column == 'P':
                     if self.select_screen() == "KNIGHT":
-                        self.character_spritesheet = Spritesheet('./img/cavaleiro_front.png')
+                        self.character_D_spritesheet = Spritesheet('./img/cavaleiro_front.png')
+                        self.character_L_spritesheet = Spritesheet('./img/cavaleiro_left.png')
+                        self.character_R_spritesheet = Spritesheet('./img/cavaleiro_right.png')
+                        self.character_U_spritesheet = Spritesheet('./img/cavaleiro_back.png')
                         Player(self, j, i, "KNIGHT")
                         self.attack_spritesheet = Spritesheet('./img/knight_assassin_attack.png')
 
                     if self.select_screen() == "MAGE":
-                        self.character_spritesheet = Spritesheet('./img/mago_front.png')
+                        self.character_D_spritesheet = Spritesheet('./img/mago_front.png')
+                        self.character_L_spritesheet = Spritesheet('./img/mago_left.png')
+                        self.character_R_spritesheet = Spritesheet('./img/mago_right.png')
+                        self.character_U_spritesheet = Spritesheet('./img/mago_back.png')
                         Player(self, j, i, "MAGE")
                         self.attack_spritesheet = Spritesheet('./img/mage_attack.png')
 
                     if self.select_screen() == "ARCHER":
-                        self.character_spritesheet = Spritesheet('./img/arqueiro_front.png')
+                        self.character_D_spritesheet = Spritesheet('./img/arqueiro_front.png')
+                        self.character_L_spritesheet = Spritesheet('./img/arqueiro_left.png')
+                        self.character_R_spritesheet = Spritesheet('./img/arqueiro_right.png')
+                        self.character_U_spritesheet = Spritesheet('./img/arqueiro_back.png')
                         Player(self, j, i, "ARCHER")
                         self.attack_spritesheet = Spritesheet('./img/archer_attack.png')
 
                     if self.select_screen() == "ASSASSIN":
-                        self.character_spritesheet = Spritesheet('./img/assassino_front.png')
+                        self.character_D_spritesheet = Spritesheet('./img/assassino_front.png')
+                        self.character_L_spritesheet = Spritesheet('./img/assassino_left.png')
+                        self.character_R_spritesheet = Spritesheet('./img/assassino_right.png')
+                        self.character_U_spritesheet = Spritesheet('./img/assassino_back.png')
                         Player(self, j, i, "ASSASSIN")
                         self.attack_spritesheet = Spritesheet('./img/knight_assassin_attack.png')
     
@@ -127,7 +139,7 @@ class Game:
         text = self.font.render('Game Over', True, WHITE)
         text_rect = text.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
 
-        restart_button = Button(10, SCREEN_HEIGHT - 60, 120, 50, WHITE, BLACK, 'RESTART', 30)
+        restart_button = Button(10, SCREEN_HEIGHT - 60, 120, 50, WHITE, BLACK, 'RESTART', 26)
         exit_go_button = Button(510, SCREEN_HEIGHT - 60, 120, 50, WHITE, BLACK, 'QUIT', 32)
 
         for sprite in self.all_sprites:

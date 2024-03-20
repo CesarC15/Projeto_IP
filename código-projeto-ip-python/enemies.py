@@ -69,25 +69,29 @@ class Enemy(pygame.sprite.Sprite):
         if self.number == 1:
             animations = [
                         self.game.enemy_knight_spritesheet.get_sprite(KNIGHT_ENEMY_DOWN_ANIMATION_FRAME_1_X, ENEMY_DOWN_ANIMATION_FRAME_1_Y, KNIGHT_ENEMY_DOWN_ANIMATION_WIDTH, ENEMY_DOWN_ANIMATION_FRAME_1_HEIGHT),
-                        self.game.enemy_knight_spritesheet.get_sprite(KNIGHT_ENEMY_DOWN_ANIMATION_FRAME_2_X, ENEMY_DOWN_ANIMATION_FRAME_2_HEIGHT, KNIGHT_ENEMY_DOWN_ANIMATION_WIDTH, ENEMY_DOWN_ANIMATION_FRAME_2_HEIGHT)
+                        self.game.enemy_knight_spritesheet.get_sprite(KNIGHT_ENEMY_DOWN_ANIMATION_FRAME_2_X, ENEMY_DOWN_ANIMATION_FRAME_2_HEIGHT, KNIGHT_ENEMY_DOWN_ANIMATION_WIDTH, ENEMY_DOWN_ANIMATION_FRAME_2_HEIGHT),
+                        self.game.enemy_knight_spritesheet.get_sprite(KNIGHT_ENEMY_DOWN_ANIMATION_FRAME_1_X, ENEMY_DOWN_ANIMATION_FRAME_1_Y, KNIGHT_ENEMY_DOWN_ANIMATION_WIDTH, ENEMY_DOWN_ANIMATION_FRAME_1_HEIGHT),
                     ]
             
         if self.number == 2:
             animations = [
                         self.game.enemy_mage_spritesheet.get_sprite(MAGE_ENEMY_DOWN_ANIMATION_FRAME_1_X, ENEMY_DOWN_ANIMATION_FRAME_1_Y, MAGE_ENEMY_DOWN_ANIMATION_WIDTH, ENEMY_DOWN_ANIMATION_FRAME_1_HEIGHT),
-                        self.game.enemy_mage_spritesheet.get_sprite(MAGE_ENEMY_DOWN_ANIMATION_FRAME_2_X, ENEMY_DOWN_ANIMATION_FRAME_2_HEIGHT, MAGE_ENEMY_DOWN_ANIMATION_WIDTH, ENEMY_DOWN_ANIMATION_FRAME_2_HEIGHT)
+                        self.game.enemy_mage_spritesheet.get_sprite(MAGE_ENEMY_DOWN_ANIMATION_FRAME_2_X, ENEMY_DOWN_ANIMATION_FRAME_2_HEIGHT, MAGE_ENEMY_DOWN_ANIMATION_WIDTH, ENEMY_DOWN_ANIMATION_FRAME_2_HEIGHT),
+                        self.game.enemy_mage_spritesheet.get_sprite(MAGE_ENEMY_DOWN_ANIMATION_FRAME_1_X, ENEMY_DOWN_ANIMATION_FRAME_1_Y, MAGE_ENEMY_DOWN_ANIMATION_WIDTH, ENEMY_DOWN_ANIMATION_FRAME_1_HEIGHT)
                     ]
             
         if self.number == 3:
             animations = [
                         self.game.enemy_archer_spritesheet.get_sprite(ARCHER_ENEMY_DOWN_ANIMATION_FRAME_1_X, ENEMY_DOWN_ANIMATION_FRAME_1_Y, ARCHER_ENEMY_DOWN_ANIMATION_WIDTH, ENEMY_DOWN_ANIMATION_FRAME_1_HEIGHT),
-                        self.game.enemy_archer_spritesheet.get_sprite(ARCHER_ENEMY_DOWN_ANIMATION_FRAME_2_X, ENEMY_DOWN_ANIMATION_FRAME_2_HEIGHT, ARCHER_ENEMY_DOWN_ANIMATION_WIDTH, ENEMY_DOWN_ANIMATION_FRAME_2_HEIGHT)
+                        self.game.enemy_archer_spritesheet.get_sprite(ARCHER_ENEMY_DOWN_ANIMATION_FRAME_2_X, ENEMY_DOWN_ANIMATION_FRAME_2_HEIGHT, ARCHER_ENEMY_DOWN_ANIMATION_WIDTH, ENEMY_DOWN_ANIMATION_FRAME_2_HEIGHT),
+                        self.game.enemy_archer_spritesheet.get_sprite(ARCHER_ENEMY_DOWN_ANIMATION_FRAME_1_X, ENEMY_DOWN_ANIMATION_FRAME_1_Y, ARCHER_ENEMY_DOWN_ANIMATION_WIDTH, ENEMY_DOWN_ANIMATION_FRAME_1_HEIGHT)
                     ]
             
         if self.number == 4:
             animations = [
                         self.game.enemy_assassin_spritesheet.get_sprite(ASSASSIN_ENEMY_DOWN_ANIMATION_FRAME_1_X, ENEMY_DOWN_ANIMATION_FRAME_1_Y, ASSASSIN_ENEMY_DOWN_ANIMATION_WIDTH, ENEMY_DOWN_ANIMATION_FRAME_1_HEIGHT),
-                        self.game.enemy_assassin_spritesheet.get_sprite(ASSASSIN_ENEMY_DOWN_ANIMATION_FRAME_2_X, ENEMY_DOWN_ANIMATION_FRAME_2_HEIGHT, ASSASSIN_ENEMY_DOWN_ANIMATION_WIDTH, ENEMY_DOWN_ANIMATION_FRAME_2_HEIGHT)
+                        self.game.enemy_assassin_spritesheet.get_sprite(ASSASSIN_ENEMY_DOWN_ANIMATION_FRAME_2_X, ENEMY_DOWN_ANIMATION_FRAME_2_HEIGHT, ASSASSIN_ENEMY_DOWN_ANIMATION_WIDTH, ENEMY_DOWN_ANIMATION_FRAME_2_HEIGHT),
+                        self.game.enemy_assassin_spritesheet.get_sprite(ASSASSIN_ENEMY_DOWN_ANIMATION_FRAME_1_X, ENEMY_DOWN_ANIMATION_FRAME_1_Y, ASSASSIN_ENEMY_DOWN_ANIMATION_WIDTH, ENEMY_DOWN_ANIMATION_FRAME_1_HEIGHT)
                     ]
         
         if self.facing == 'DOWN' or self.facing == 'UP' or self.facing == 'RIGHT' or self.facing == 'LEFT':

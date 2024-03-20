@@ -29,7 +29,6 @@ class Green_key(pygame.sprite.Sprite):
         self.hitbox = pygame.Rect(self.rect.x, self.rect.y, self.width, self.height)
 
     def key_collected(self):
-        for green_key in self.game.green_key:
+        for green_key in self.game.green_keys:
             if green_key.collected:
-                self.game.green_key.remove(green_key)
-                self.game.all_sprites.remove(green_key)
+                self.game.green_keys.remove(green_key)
