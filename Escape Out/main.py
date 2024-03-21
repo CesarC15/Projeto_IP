@@ -43,8 +43,8 @@ class Game:
             for j, column in enumerate(row):
                 Ground(self, j, i)
 
-                if column == 'B':
-                    Wall(self, j, i)
+                if column == 'B' or column == 'A':
+                    Wall(self, j, i, column)
                     
                 if column == '1':
                     Green_key(self, j, i)
