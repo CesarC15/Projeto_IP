@@ -35,7 +35,7 @@ maze = [
          "B..E...........................B.................B..............B...............B",
          "B..............................B.................B..............B........E......B",
          "B..............................B.................B..............B...............B",
-         "B.....BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB...BBBBBB...............B",
+         "B......BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB...BBBBBB...............B",
          "B...............................................................................B",
          "B...............................................................................B",
          "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
