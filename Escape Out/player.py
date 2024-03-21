@@ -26,7 +26,7 @@ class Player(pygame.sprite.Sprite):
         elif self.select_character == "ASSASSIN":
             self.image = self.game.character_D_spritesheet.get_sprite(ASSASSIN_DOWN_ANIMATION_FRAME_1_X, ASSASSIN_DOWN_ANIMATION_Y, ASSASSIN_DOWN_ANIMATION_WIDTH, ASSASSIN_DOWN_ANIMATION_FRAME_1_HEIGHT)
         
-        self.image = pygame.Surface((32, 45))
+        self.image = pygame.Surface((32, 48))
 
         self.rect = self.image.get_rect()
         self.rect.x = self.x
@@ -48,17 +48,17 @@ class Player(pygame.sprite.Sprite):
                 sprite.rect.x += PLAYER_SPEED
             self.change_x -= PLAYER_SPEED
             self.facing = 'LEFT'
-        if keys[pygame.K_RIGHT]:
+        elif keys[pygame.K_RIGHT]:
             for sprite in self.game.all_sprites:
                 sprite.rect.x -= PLAYER_SPEED
             self.change_x += PLAYER_SPEED
             self.facing = 'RIGHT'
-        if keys[pygame.K_UP]:
+        elif keys[pygame.K_UP]:
             for sprite in self.game.all_sprites:
                 sprite.rect.y += PLAYER_SPEED
             self.change_y -= PLAYER_SPEED
             self.facing = 'UP'
-        if keys[pygame.K_DOWN]:
+        elif keys[pygame.K_DOWN]:
             for sprite in self.game.all_sprites:
                 sprite.rect.y -= PLAYER_SPEED
             self.change_y += PLAYER_SPEED
@@ -273,7 +273,7 @@ class Player(pygame.sprite.Sprite):
         if direction == 'x':
             for block in self.game.blocks:
                 if self.rect.colliderect(block.rect):
-                    print("Colisão com block detectada!")
+                    #print("Colisão com block detectada!")
                     if self.change_x > 0:
                         self.rect.right = block.rect.left
                     if self.change_x < 0:
@@ -281,7 +281,7 @@ class Player(pygame.sprite.Sprite):
         if direction == 'y':
             for block in self.game.blocks:
                 if self.rect.colliderect(block.rect):
-                    print("Colisão com block detectada!")
+                   #print("Colisão com block detectada!")
                     if self.change_y > 0:
                         self.rect.bottom = block.rect.top
                     if self.change_y < 0:
@@ -290,14 +290,14 @@ class Player(pygame.sprite.Sprite):
     def collide_enemy(self):
         for enemy in self.game.enemies:
             if self.rect.colliderect(enemy.rect):
-                print("Colisão com inimigo detectada!")
+                #print("Colisão com inimigo detectada!")
                 self.kill()
                 self.game.playing = False
 
     def collide_green_key(self):
         for green_key in self.game.green_key:
             if self.rect.colliderect(green_key.rect) and not green_key:
-                print("Colisão com chave_verde detectada!")
+                #print("Colisão com chave_verde detectada!")
                 green_key.collected = True
                 self.game.green_key.remove(green_key)
                 self.game.all_sprites.remove(green_key)
@@ -305,7 +305,7 @@ class Player(pygame.sprite.Sprite):
     def collide_red_key(self):
         for red_key in self.game.red_key:
             if self.rect.colliderect(red_key.rect) and not red_key:
-                print("Colisão com chave_verde detectada!")
+               # print("Colisão com chave_verde detectada!")
                 red_key.collected = True
                 self.game.red_key.remove(red_key)
                 self.game.all_sprites.remove(red_key)
@@ -314,7 +314,7 @@ class Player(pygame.sprite.Sprite):
     def collide_blue_key(self):
         for blue_key in self.game.blue_key:
             if self.rect.colliderect(blue_key.rect) and not blue_key:
-                print("Colisão com chave_verde detectada!")
+                #print("Colisão com chave_verde detectada!")
                 blue_key.collected = True
                 self.game.blue_key.remove(blue_key)
                 self.game.all_sprites.remove(blue_key)
@@ -322,7 +322,7 @@ class Player(pygame.sprite.Sprite):
     def collide_door(self):
         for door in self.game.door:
             if self.rect.colliderect(door.rect) and not door:
-                print("Colisão com porta")
+                #print("Colisão com porta")
                 door.position = True
                 self.game.playing = False
 
