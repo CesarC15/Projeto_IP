@@ -7,3 +7,16 @@ Quando o jogador conseguir coletar as três chaves, ele vence o jogo.
 Antes de iniciar o jogo, instale o pygame utilizando o comando pip install pygame no terminal.
  
 Para iniciar o jogo vá em start.py e clique para rodar.
+
+# Participantes
+- César Cavalcanti (crtc)
+
+- Eduarda Sales (evas)
+
+- Gabriel Carneiro (gac)
+
+- Guilherme Campelo (gocc)
+
+- João Pedro Bezerra (jpbmtl)
+
+- Tiago Ferreira (taf3)
